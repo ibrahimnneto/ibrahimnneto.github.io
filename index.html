@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netoi Index</title>
+    <meta
+      name="description"
+      content="Netoi Index is a curated internet cabinet of apps, docs, tools, and communities worth keeping close."
+    />
+    <meta name="theme-color" content="#09111f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-a" aria-hidden="true"></div>
+      <div class="ambient ambient-b" aria-hidden="true"></div>
+      <div class="grid-glow" aria-hidden="true"></div>
+
+      <header class="site-topbar" aria-label="Global">
+        <a class="brandmark" href="#top">
+          <span class="brandmark__dot"></span>
+          <span class="brandmark__text">Netoi Index</span>
+        </a>
+        <div class="topbar-actions">
+          <a class="topbar-link" href="#collections">Collections</a>
+          <a class="topbar-link" href="#category-index">Categories</a>
+          <a class="topbar-link" href="#fresh-finds">Fresh finds</a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero reveal" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="hero-kicker">Curated by Ibrahim Neto</p>
+            <h1 id="hero-title">A dark archive of tools, docs, and internet rabbit holes worth keeping open.</h1>
+            <p class="hero-summary">
+              Built like a personal launchpad, shaped like a public index. Netoi Index collects the apps, references,
+              communities, and utility links that are genuinely useful.
+            </p>
+            <div class="hero-actions">
+              <a class="button button--primary" href="#collections">Explore the index</a>
+              <a class="button button--ghost" href="#category-index">Jump to categories</a>
+              <button class="button button--ghost" id="random-pick-button" type="button">Random pick</button>
+            </div>
+            <dl class="hero-stats" id="hero-stats" aria-label="Site stats"></dl>
+          </div>
+
+          <aside class="hero-preview" aria-labelledby="preview-title">
+            <div class="preview-header">
+              <p class="eyebrow">Live preview</p>
+              <h2 id="preview-title">Featured signals</h2>
+            </div>
+            <div class="preview-list" id="featured-preview"></div>
+          </aside>
+        </section>
+
+        <section class="utility-bar reveal" aria-label="Search and filters">
+          <div class="utility-bar__search">
+            <label class="sr-only" for="search-input">Search resources</label>
+            <input
+              id="search-input"
+              class="search-input"
+              type="search"
+              name="q"
+              placeholder="Search apps, docs, communities, notes..."
+              autocomplete="off"
+            />
+          </div>
+          <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-panel">
+            Filters
+          </button>
+          <div class="filter-panel" id="filter-panel">
+            <div class="filter-group">
+              <span class="filter-label">Category</span>
+              <div class="chip-row" id="category-filters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Platform</span>
+              <div class="chip-row" id="platform-filters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Link type</span>
+              <div class="chip-row" id="linktype-filters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Tags</span>
+              <div class="chip-row" id="tag-filters"></div>
+            </div>
+            <div class="utility-actions">
+              <button class="button button--tiny" id="reset-filters-button" type="button">Reset filters</button>
+              <p class="result-note" id="results-summary" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="collections reveal" id="collections" aria-labelledby="collections-title">
+          <div class="section-heading">
+            <p class="eyebrow">Collections</p>
+            <h2 id="collections-title">Curated routes through the library</h2>
+          </div>
+          <div id="collection-list" class="collection-list"></div>
+        </section>
+
+        <section class="category-index reveal" id="category-index" aria-labelledby="category-title">
+          <div class="section-heading">
+            <p class="eyebrow">Category index</p>
+            <h2 id="category-title">Scan by ecosystem, not by guesswork</h2>
+          </div>
+          <div id="category-grid" class="category-grid"></div>
+        </section>
+
+        <div class="content-grid">
+          <nav class="section-rail reveal" aria-labelledby="rail-title">
+            <p class="eyebrow">Jump rail</p>
+            <h2 class="section-rail__title" id="rail-title">Sections</h2>
+            <div id="section-rail-list" class="section-rail__list"></div>
+          </nav>
+
+          <section class="resource-column" aria-labelledby="resource-title">
+            <div class="section-heading section-heading--tight">
+              <p class="eyebrow">Index</p>
+              <h2 id="resource-title">The archive itself</h2>
+            </div>
+            <div id="resource-sections"></div>
+          </section>
+        </div>
+
+        <section class="fresh-finds reveal" id="fresh-finds" aria-labelledby="fresh-title">
+          <div class="section-heading">
+            <p class="eyebrow">Fresh finds</p>
+            <h2 id="fresh-title">Recently touched and editor-picked</h2>
+          </div>
+          <div class="fresh-grid">
+            <div class="fresh-panel">
+              <div class="panel-header">
+                <h3>Recently updated</h3>
+                <p>New additions and recently tuned entries.</p>
+              </div>
+              <div id="recent-list" class="mini-list"></div>
+            </div>
+            <div class="fresh-panel">
+              <div class="panel-header">
+                <h3>Editor’s picks</h3>
+                <p>Useful things worth opening before you forget.</p>
+              </div>
+              <div id="editor-list" class="mini-list"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer reveal">
+        <div>
+          <p class="site-footer__title">www.netoi7.me</p>
+          <p class="site-footer__text">
+            A personal index built to stay useful, grow slowly, and reward curiosity.
+          </p>
+        </div>
+        <div class="site-footer__links">
+          <a href="https://github.com/ibrahimnneto/ibrahimnneto.github.io" target="_blank" rel="noreferrer">
+            GitHub repo
+          </a>
+          <a href="https://github.com/ibrahimnneto/ibrahimnneto.github.io/issues/new" target="_blank" rel="noreferrer">
+            Suggest a resource
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <noscript>
+      <div class="noscript-note">
+        Netoi Index uses a small amount of JavaScript to render the searchable library. Enable JavaScript to browse it.
+      </div>
+    </noscript>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
